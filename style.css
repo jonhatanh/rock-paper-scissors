@@ -1,0 +1,167 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: lavender;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    margin-bottom: 10%;
+}
+.computer-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    height: 30vh;
+    position: relative;
+}
+.player-side {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    position: relative;
+}
+.choose-text {
+    position: absolute;
+    bottom: 150%;
+    font-size: 1.5rem;
+    font-weight: 300;
+    animation: fade 1s alternate infinite ease-in-out;
+}
+.option {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* animation: circle 5s alternate; */
+}
+.option > i {
+    font-size: 3rem;
+    padding: 0.2rem;
+}
+.option > p {
+    position: absolute;
+    top: 110%;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+.player-side .option {
+    animation: choose 1s alternate infinite;
+    transition: transform 0.1s ease-in-out;
+}
+.player-side .option:hover {
+    transform: scale(125%);
+    animation: choose 0.3s alternate infinite ease;
+}   
+.player-side .option:hover p {
+    display: block;
+    opacity: 1;
+}   
+
+#rock-computer {
+    animation: toRight 1s infinite linear, danger 0.5s alternate infinite ease; 
+}
+#paper-computer {
+    animation: middle 0.5s alternate infinite ease-in-out, danger 0.5s alternate infinite ease;
+    z-index: 10;
+}
+#scissors-computer {
+    animation: toLeft 1s infinite linear, danger 0.5s alternate infinite ease;
+}
+
+@keyframes choose {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: 0 0 20px teal;
+    }
+}
+@keyframes danger {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+}
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.75;
+    }
+}
+
+@keyframes toRight {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(100%,35%);
+    }
+    50% {
+        transform: translate(225%,0);
+    }
+    75% {
+        transform: translate(100%,-35%);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+@keyframes toLeft {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(-100%,-35%);
+    }
+    50% {
+        transform: translate(-225%,0);
+    }
+    75% {
+        transform: translate(-100%,35%);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+@keyframes middle {
+    0% {
+        transform: translateY(35%);
+    }
+    /* 50% {
+        transform: translateY(35%);
+    } */
+    /* 50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-35%);
+    } */
+    100% {
+        transform: translateY(-35%);
+    }
+}

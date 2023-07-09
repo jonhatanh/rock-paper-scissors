@@ -34,7 +34,13 @@ function playRound(playerSelection = '', computerSelection) {
 
     return result;
 }
-
+const gameInfo = {
+    round: 1,
+    points: {
+        player: 0,
+        computer: 0,
+    },
+};
 function game() {
     let round = 1;
     const points = {player: 0, computer: 0};
