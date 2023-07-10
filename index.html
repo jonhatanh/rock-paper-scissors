@@ -17,33 +17,48 @@
         <i class="fa-regular fa-hand"></i>
         <i class="fa-regular fa-hand-scissors fa-rotate-90"></i> 
 -->
+    <div class="modal">
+        <p></p>
+        <button id="start">Start Game</button>
+    </div>
+    <div class="next-round">
+        <button id="nextRound">Next Round</button>
+    </div>
     <header>
         <h1>Rock, Paper, Scissors</h1>
+        <p id="roundLabel" class="round-label"></p>
     </header>
+    
     <main>
-        <div class="computer-side">
-            <div id="rock-computer" class="option">
-                <i class="fa-regular fa-hand-back-fist fa-flip-vertical"></i>
-            </div>
-            <div id="paper-computer" class="option">
-                <i class="fa-regular fa-hand fa-flip-vertical"></i>
-            </div>
-            <div id="scissors-computer" class="option">
-                <i class="fa-regular fa-hand-peace fa-flip-vertical"></i>
-                <!-- <i class="fa-regular fa-hand-scissors"></i> -->
+        <div class="score">
+            <div>
+                <p>Computer: <span id="computerPoints"></span></p>
+                <p>User: <span id="playerPoints"></span></p> 
             </div>
         </div>
+        <div class="computer-side">
+            <div id="rock-computer" class="option rock color">
+                <i class="fa-regular fa-hand-back-fist fa-flip-vertical"></i>
+            </div>
+            <div id="paper-computer" class="option paper color">
+                <i class="fa-regular fa-hand fa-flip-vertical"></i>
+            </div>
+            <div id="scissors-computer" class="option scissors color">
+                <i class="fa-regular fa-hand-peace fa-flip-vertical"></i>
+            </div>
+        </div>
+        <div class="label"></div>
         <div class="player-side">
-            <p class="choose-text">- Choose an option- </p>
-            <div id="rock-player" class="option">
+            <p class="choose-text"><span id="resultLabel"></span></p>
+            <div id="rock-player" data-id="rock" class="option">
                 <i class="fa-regular fa-hand-back-fist"></i>
                 <p>Rock</p>
             </div>
-            <div id="paper-player" class="option">
+            <div id="paper-player" data-id="paper" class="option">
                 <i class="fa-regular fa-hand"></i>
                 <p>Paper</p>
             </div>
-            <div id="scissors-player" class="option">
+            <div id="scissors-player" data-id="scissors" class="option">
                 <i class="fa-regular fa-hand-peace"></i>
                 <p>Scissors</p>
                 <!-- <i class="fa-regular fa-hand-scissors"></i> -->

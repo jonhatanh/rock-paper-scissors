@@ -4,28 +4,83 @@
     padding: 0;
 }
 
+html {
+    margin: 0 auto;
+}
 body {
     background-color: lavender;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
 main {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    margin-bottom: 10%;
+    max-width: 600px;
+    min-width: 400px;
 }
 .computer-side {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     height: 30vh;
     position: relative;
+}
+.label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.score {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 400px;
+    max-width: 600px;
+}
+.score div {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 2rem;
+    top: -1rem;
+    left: 0;
+    right: 0;
+    font-weight: 900;
+}
+.score div p:first-child {
+    align-self: flex-end;
+}
+.score div > p {
+    margin: 0 1rem;
+}
+#playerPoints, #computerPoints {
+    font-weight: 300;
+}
+.score::before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
 }
 .player-side {
     position: absolute;
@@ -35,6 +90,7 @@ main {
     align-items: center;
     gap: 2rem;
     margin-top: 2rem;
+    margin-bottom: 5rem;
     position: relative;
 }
 .choose-text {
@@ -70,15 +126,28 @@ main {
     transition: transform 0.1s ease-in-out;
 }
 .player-side .option:hover {
-    transform: scale(125%);
-    animation: choose 0.3s alternate infinite ease;
+    transform: scale(125%) translateY(-10%);
+    animation-duration: 0.3s;
 }   
 .player-side .option:hover p {
     display: block;
     opacity: 1;
 }   
 
-#rock-computer {
+.option.rock.color {
+    animation: toRight 1s infinite linear, danger 0.5s alternate infinite ease; 
+}
+.option.paper.color {
+    animation: middle 0.5s alternate infinite ease-in-out, danger 0.5s alternate infinite ease;
+    z-index: 10;
+}
+.option.scissors.color {
+    animation: toLeft 1s infinite linear, danger 0.5s alternate infinite ease;
+}
+.option.color {
+    animation: danger 0.5s alternate infinite ease;
+}
+/* #rock-computer {
     animation: toRight 1s infinite linear, danger 0.5s alternate infinite ease; 
 }
 #paper-computer {
@@ -87,7 +156,7 @@ main {
 }
 #scissors-computer {
     animation: toLeft 1s infinite linear, danger 0.5s alternate infinite ease;
-}
+} */
 
 @keyframes choose {
     from {
@@ -97,6 +166,7 @@ main {
         box-shadow: 0 0 20px teal;
     }
 }
+
 @keyframes danger {
     from {
         box-shadow: none;
@@ -164,4 +234,130 @@ main {
     100% {
         transform: translateY(-35%);
     }
+}
+
+@keyframes choosedAnimation {
+    from {
+        transform: translate(0) ;
+    }
+    to {
+        transform: translateY(-210%);
+    }
+}
+@keyframes choosedAnimationColor {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: 0 0 50px rgba(0, 0, 255, 0.5);
+    }
+}
+@keyframes choosedAnimationComputer {
+    from {
+        transform: translate(0) ;
+    }
+    to {
+        transform: translateY(160%);
+    }
+}
+@keyframes choosedAnimationColorComputer {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+    }
+}
+@keyframes matchAnimation {
+    from {
+        opacity: 0;
+        font-size: 5rem;
+    }
+    to {
+        opacity: 1;
+        font-size: 1rem;
+    }
+}
+
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+.modal p {
+    padding: 1rem;
+    font-size: 2rem;
+    color: lavender;
+    display: none;
+}
+.modal button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 15px;
+    background-color: lavender;    
+    font-weight: 900;
+    box-shadow: 0 0 0.3rem rgba(0, 0, 255, 0.5);
+    transition: box-shadow 0.3s;
+}
+.modal button:hover {
+    box-shadow: 0 0 1.5rem rgba(255, 0, 0, 0.5);
+    color: red;
+}
+.next-round {
+    position: absolute;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+.next-round button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 15px;
+    background-color: lavender;    
+    font-weight: 900;
+    box-shadow: 0 0 0.3rem rgba(0, 0, 255, 0.5);
+    transition: box-shadow 0.3s;
+}
+.next-round button:hover {
+    box-shadow: 0 0 1.5rem rgba(255, 0, 0, 0.5);
+    color: red;
+}
+
+.player-side div.option.choosed {
+    position: absolute;
+    bottom: 100%;
+    animation: choosedAnimation 1s forwards ease, choosedAnimationColor 1s forwards ease;
+}
+#rock-computer.choosed, #paper-computer.choosed, #scissors-computer.choosed {
+    position: absolute;
+    animation: choosedAnimationComputer 1s forwards ease, choosedAnimationColorComputer 1s forwards ease;
+}
+
+.match {
+    animation: matchAnimation 0.5s normal ease-in-out 3;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+.round-label {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
