@@ -67,6 +67,7 @@ function game(e) {
     async function prepareRound(e) {
         if (animationsRunning) return;
         animationsRunning = true;
+        document.getElementById('resultLabel').textContent = ``;
         const playerTarget = e.currentTarget;
 
 
