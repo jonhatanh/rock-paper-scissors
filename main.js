@@ -79,7 +79,6 @@ function game(e) {
 
         const unselectedComputerOptions = getUnselectedOptions(computerSelection);
         stopComputerAnimations(unselectedComputerOptions);
-        console.log(computerTarget);
 
         playerTarget.classList.add('choosed');
         computerTarget.classList.add('choosed');
