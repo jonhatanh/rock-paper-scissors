@@ -96,7 +96,7 @@ function game(e) {
         gameInfo.round++;
         setTimeout(showGameInfo, 1300, gameInfo);
 
-        if(gameInfo.round === 6) return;
+        if(gameInfo.points.player === 5 || gameInfo.points.computer === 5) return;
         let nextRound = () => {
             nextRoundButton.parentNode.style.display = 'none'
             gameInfo.message = '- Choose an option -';
@@ -152,16 +152,8 @@ function showMatchLabel(string) {
 }
 
 function showGameInfo(info, showNextRoundButton = true) {
-    if( info.round === 6) {
-        debugger;
-        let winner = ''
-        if(info.points.player === info.points.computer) {
-            winner = 'It\'s a draw!';
-        } else if (info.points.player > info.points.computer) {
-            winner = 'You Win!';
-        } else {
-            winner = 'You Lose!';
-        }
+    if( info.points.player === 5 || info.points.computer === 5) {
+        let winner = info.points.player > info.points.computer ? 'You Win!' : 'You Lose!';
         document.querySelector('.modal p').textContent = `Game Over: ${winner}`;
         document.querySelector('.modal p').style.display = 'block';
         document.querySelector('.modal').style.display = 'flex';
