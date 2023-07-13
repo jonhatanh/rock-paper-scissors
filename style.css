@@ -366,10 +366,14 @@ h1 {
 footer {
     position: absolute;
     bottom: 0;
+    z-index: 100;
 }
-footer span {
+footer a {
+    text-decoration: none;
+    color: black;
     transition: color 0.4s;
 }
-footer span:hover {
+
+footer a:hover {
     color: #6b21a8;
 }
